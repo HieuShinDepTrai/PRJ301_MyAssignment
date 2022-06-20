@@ -59,9 +59,12 @@ header {
     margin-top: 100px;
     height: 500px;
     width: 75%;
+    border: solid 1px;
+    border-radius: 10px;
 }
 
 .Schedule_table table{
+    margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
     

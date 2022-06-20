@@ -1,4 +1,4 @@
-.header {
+header {
     height: 50px;
     margin-top: 20px;
 }
@@ -22,6 +22,64 @@
     font-size: 20px;
     padding: 10px;
     color: #000;
-    background-color: rgb(95, 95, 247); 
+    background-color: rgb(146, 106, 205); 
     border-radius: 10px;
+}
+
+.left {
+    float: left;
+    margin-top: 100px;
+    height: 500px;
+    border: solid 1px;
+    border-radius: 10px;
+    margin-left: 40px;
+    width: 20%;
+}
+
+.left ul {
+    list-style: none;
+    padding: 10px 20px;
+}
+
+.left ul li {
+    height: 70px;
+    width: 250px;
+}
+
+.left ul li a {
+    text-decoration: none;
+    background-color: rgb(18, 96, 164);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.right {
+    float: right;
+    margin-top: 100px;
+    height: 500px;
+    width: 75%;
+}
+
+.Schedule_table table{
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.Schedule_table table tr th{
+    text-align: center;
+    padding: 10px 20px;
+    background-color: rgb(146, 106, 205); 
+    border: solid 1px;
+    border-color: rgb(0, 0, 0);
+}
+
+.Schedule_table table tr td{
+    border: solid 1px;
+    border-color: rgb(0, 0, 0);
+    padding-left: 10px;
+}
+.Schedule_table table tr td:first-child{
+    text-align: center;
+    padding-left: 0;
 }

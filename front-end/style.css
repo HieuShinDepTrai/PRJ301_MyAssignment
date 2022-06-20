@@ -1,0 +1,21 @@
+.header {
+    height: 50px;
+    margin-top: 20px;
+}
+
+.logo {
+    float: left;
+    height: 50px;
+    margin-left: 50px;
+}
+
+.avt {
+    float: right;
+    height: 40px;
+    border-radius: 10px;
+    margin-right: 150px;
+}
+
+logout_btn {
+    
+}

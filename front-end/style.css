@@ -12,10 +12,16 @@
 .avt {
     float: right;
     height: 40px;
-    border-radius: 10px;
-    margin-right: 150px;
+    padding-right: 30px;
 }
 
-logout_btn {
-    
+.logout_btn {
+    text-decoration: none;
+    float: right;
+    margin-right: 50px;
+    font-size: 20px;
+    padding: 10px;
+    color: #000;
+    background-color: rgb(95, 95, 247); 
+    border-radius: 10px;
 }

@@ -1,0 +1,60 @@
+header {
+    height: 50px;
+    margin-top: 20px;
+}
+
+h1 {
+    color: violet;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    margin-top: 50px;
+}
+
+.logo {
+    float: left;
+    height: 50px;
+    margin-left: 50px;
+}
+
+.avt {
+    float: right;
+    height: 40px;
+    padding-right: 30px;
+}
+
+.logout_btn {
+    text-decoration: none;
+    float: right;
+    margin-right: 50px;
+    font-size: 20px;
+    padding: 10px;
+    color: #000;
+    background-color: rgb(146, 106, 205); 
+    border-radius: 10px;
+}
+
+
+.Schedule_table table{
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.Schedule_table table tr th{
+    text-align: center;
+    padding: 10px 20px;
+    background-color: rgb(146, 106, 205); 
+    border: solid 1px;
+    border-color: rgb(0, 0, 0);
+}
+
+.Schedule_table table tr td{
+    border: solid 1px;
+    border-color: rgb(0, 0, 0);
+    padding-left: 10px;
+}
+.Schedule_table table tr td:first-child{
+    text-align: center;
+    padding-left: 0;
+}

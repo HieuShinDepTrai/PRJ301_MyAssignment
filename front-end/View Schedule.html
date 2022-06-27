@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://localhost:9999/Assignment/Schedule -->
+<html lang="en">
+  <script>
+    (function () {
+      class RuffleMimeType {
+        constructor(a, b, c) {
+          (this.type = a), (this.description = b), (this.suffixes = c);
+        }
+      }
+      class RuffleMimeTypeArray {
+        constructor(a) {
+          (this.__mimetypes = []), (this.__named_mimetypes = {});
+          for (let b of a) this.install(b);
+        }
+        install(a) {
+          let b = this.__mimetypes.length;
+          this.__mimetypes.push(a),
+            (this.__named_mimetypes[a.type] = a),
+            (this[a.type] = a),
+            (this[b] = a);
+        }
+        item(a) {
+          return this.__mimetypes[a];
+        }
+        namedItem(a) {
+          return this.__named_mimetypes[a];
+        }
+        get length() {
+          return this.__mimetypes.length;
+        }
+      }
+      class RufflePlugin extends RuffleMimeTypeArray {
+        constructor(a, b, c, d) {
+          super(d),
+            (this.name = a),
+            (this.description = b),
+            (this.filename = c);
+        }
+        install(a) {
+          a.enabledPlugin || (a.enabledPlugin = this), super.install(a);
+        }
+      }
+      class RufflePluginArray {
+        constructor(a) {
+          (this.__plugins = []), (this.__named_plugins = {});
+          for (let b of a) this.install(b);
+        }
+        install(a) {
+          let b = this.__plugins.length;
+          this.__plugins.push(a),
+            (this.__named_plugins[a.name] = a),
+            (this[a.name] = a),
+            (this[b] = a);
+        }
+        item(a) {
+          return this.__plugins[a];
+        }
+        namedItem(a) {
+          return this.__named_plugins[a];
+        }
+        get length() {
+          return this.__plugins.length;
+        }
+      }
+      const FLASH_PLUGIN = new RufflePlugin(
+        "Shockwave Flash",
+        "Shockwave Flash 32.0 r0",
+        "ruffle.js",
+        [
+          new RuffleMimeType(
+            "application/futuresplash",
+            "Shockwave Flash",
+            "spl"
+          ),
+          new RuffleMimeType(
+            "application/x-shockwave-flash",
+            "Shockwave Flash",
+            "swf"
+          ),
+          new RuffleMimeType(
+            "application/x-shockwave-flash2-preview",
+            "Shockwave Flash",
+            "swf"
+          ),
+          new RuffleMimeType(
+            "application/vnd.adobe.flash-movie",
+            "Shockwave Flash",
+            "swf"
+          ),
+        ]
+      );
+
+      function install_plugin(a) {
+        navigator.plugins.install ||
+          Object.defineProperty(navigator, "plugins", {
+            value: new RufflePluginArray(navigator.plugins),
+            writable: !1,
+          }),
+          navigator.plugins.install(a),
+          0 < a.length &&
+            !navigator.mimeTypes.install &&
+            Object.defineProperty(navigator, "mimeTypes", {
+              value: new RuffleMimeTypeArray(navigator.mimeTypes),
+              writable: !1,
+            });
+        for (var b = 0; b < a.length; b += 1) navigator.mimeTypes.install(a[b]);
+      }
+      install_plugin(FLASH_PLUGIN);
+    })();
+  </script>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <link
+      rel="Stylesheet"
+      href="./View Schedule_files/bootstrap.css"
+      type="text/css"
+    />
+    <link
+      rel="Stylesheet"
+      href="./View Schedule_files/bootstrap.min.css"
+      type="text/css"
+    />
+    <link
+      rel="Stylesheet"
+      href="./View Schedule_files/bootstrap-theme.min.css"
+      type="text/css"
+    />
+    <link href="./View Schedule_files/mystyle.css" rel="stylesheet" />
+    <script
+      src="./View Schedule_files/jquery_002.js.tải xuống"
+      type="text/javascript"
+    ></script>
+
+    <script
+      src="./View Schedule_files/jquery_003.js.tải xuống"
+      type="text/javascript"
+    ></script>
+
+    <script
+      src="./View Schedule_files/jquery.js.tải xuống"
+      type="text/javascript"
+    ></script>
+
+    <script
+      src="./View Schedule_files/jquery-1.8.3.js.tải xuống"
+      type="text/javascript"
+    ></script>
+
+    <script
+      src="./View Schedule_files/jquery-ui.js.tải xuống"
+      type="text/javascript"
+    ></script>
+
+    <script
+      src="./View Schedule_files/jquery.alerts.js.tải xuống"
+      type="text/javascript"
+    ></script>
+    <title>View Schedule</title>
+  </head>
+
+  <body>
+    <nav class="navbar" role="navigation">
+      <ul class="nav navbar-nav">
+        <li><a href="http://localhost:9999/Assignment/Home">Home</a></li>
+        <li>
+          <a href="http://localhost:9999/Assignment/Schedule">View Schedule</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div id="ctl00_divUser" style="float: right; margin-right: 16px">
+          <span id="ctl00_lblCampusName" class="label label-success">
+            Sonnt</span
+          >
+          |
+          <span id="ctl00_lblCampusName" class="label label-success">
+            logout</span
+          >
+          |
+          <span id="ctl00_lblCampusName" class="label label-success">
+            CAMPUS: FPTU-Hòa Lạc</span
+          >
+        </div>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 20px">
+      <p style="font-size: 50px">Activities for you in this current week</p>
+    </div>
+    <div class="Schedule_table">
+      <div style="text-align: center">
+        Year:
+        <select>
+          <option>2020</option>
+          <option>2021</option>
+          <option selected="selected">2022</option>
+          <option>2023</option>
+          <option>2024</option>
+        </select>
+        <br />
+        Week:
+        <select>
+          <option value="1">02/01 To 08/01</option>
+          <option value="2">09/01 To 15/01</option>
+          <option value="3">16/01 To 22/01</option>
+          <option value="4">23/01 To 29/01</option>
+          <option value="5">30/01 To 05/02</option>
+          <option value="6">06/02 To 12/02</option>
+          <option value="7">13/02 To 19/02</option>
+          <option value="8">20/02 To 26/02</option>
+          <option value="9">27/02 To 05/03</option>
+          <option value="10">06/03 To 12/03</option>
+          <option value="11">13/03 To 19/03</option>
+          <option value="12">20/03 To 26/03</option>
+          <option value="13">27/03 To 02/04</option>
+          <option value="14">05/04 To 09/04</option>
+          <option value="15">10/04 To 16/04</option>
+          <option value="16">17/04 To 23/04</option>
+          <option value="17">24/04 To 30/04</option>
+          <option value="18">01/05 To 07/05</option>
+          <option value="19">08/05 To 14/05</option>
+          <option value="20">15/05 To 21/05</option>
+          <option value="21">22/05 To 28/05</option>
+          <option value="22">29/05 To 04/06</option>
+          <option value="23">07/06 To 11/06</option>
+          <option value="24">12/06 To 18/06</option>
+          <option selected="selected" value="25">19/06 To 25/06</option>
+          <option value="26">26/06 To 04/07</option>
+          <option value="27">05/07 To 11/07</option>
+          <option value="28">12/07 To 18/07</option>
+          <option value="29">19/07 To 25/07</option>
+          <option value="30">26/07 To 01/08</option>
+          <option value="31">02/08 To 08/08</option>
+          <option value="32">09/08 To 15/08</option>
+          <option value="33">16/08 To 22/08</option>
+          <option value="34">23/08 To 29/08</option>
+          <option value="35">30/08 To 05/09</option>
+          <option value="36">06/09 To 12/09</option>
+          <option value="37">13/09 To 19/09</option>
+          <option value="38">20/09 To 26/09</option>
+          <option value="39">27/09 To 03/10</option>
+          <option value="40">04/10 To 10/10</option>
+          <option value="41">11/10 To 17/10</option>
+          <option value="42">18/10 To 24/10</option>
+          <option value="43">25/10 To 31/10</option>
+          <option value="44">01/11 To 07/11</option>
+          <option value="45">08/11 To 14/11</option>
+          <option value="46">15/11 To 21/11</option>
+          <option value="47">22/11 To 28/11</option>
+          <option value="48">29/11 To 03/12</option>
+          <option value="49">06/12 To 12/12</option>
+          <option value="50">13/12 To 19/12</option>
+          <option value="51">20/12 To 26/12</option>
+          <option value="52">27/12 To 02/01</option>
+        </select>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Slot</th>
+            <!-- comment -->
+
+            <th>2022-06-19</th>
+
+            <th>2022-06-20</th>
+
+            <th>2022-06-21</th>
+
+            <th>2022-06-22</th>
+
+            <th>2022-06-23</th>
+
+            <th>2022-06-24</th>
+
+            <th>2022-06-25</th>
+          </tr>
+
+          <tr>
+            <td>1</td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: green;">Attended</h5>
+                <a>Edit Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+                
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: green;">Attended</h5>
+                <a>Edit Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+                
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: green;">Attended</h5>
+                <a>Edit Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+                
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: green;">Attended</h5>
+                <a>Edit Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+                
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>5</td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: green;">Attended</h5>
+                <a>Edit Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+                
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>6</td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: green;">Attended</h5>
+                <a>Edit Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+                
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>7</td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: green;">Attended</h5>
+                <a>Edit Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+                
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>8</td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: green;">Attended</h5>
+                <a>Edit Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+                
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+                DBI <br />
+                at A1 <br />
+                <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+              </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+
+            <td>
+              DBI <br />
+              at A1 <br />
+              <h5 style="color: gray;">Not yet</h5>
+                <a>Take Attend</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

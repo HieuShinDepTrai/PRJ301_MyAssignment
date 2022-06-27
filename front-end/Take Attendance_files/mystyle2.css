@@ -1,0 +1,17 @@
+.choose table tr td{
+    border: solid 1px;
+    padding: 10px 20px;
+    border-color: rgb(0, 0, 0);
+    text-align: center;
+}
+.choose table {
+    display: inline;
+    width: 50%;
+}
+.choose table tr th{
+    text-align: center;
+    padding: 10px 20px;
+    background-color: rgb(184, 184, 254);
+    border: solid 1px;
+    border-color: rgb(0, 0, 0);
+}

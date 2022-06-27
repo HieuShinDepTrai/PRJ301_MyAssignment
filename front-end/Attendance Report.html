@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://localhost:9999/Assignment/ListAttendance -->
+<html lang="en"><script>
+    (function() {
+    class RuffleMimeType {
+        constructor(a, b, c) {
+            this.type = a, this.description = b, this.suffixes = c
+        }
+    }
+    class RuffleMimeTypeArray {
+        constructor(a) {
+            this.__mimetypes = [], this.__named_mimetypes = {};
+            for (let b of a) this.install(b)
+        }
+        install(a) {
+            let b = this.__mimetypes.length;
+            this.__mimetypes.push(a), this.__named_mimetypes[a.type] = a, this[a.type] = a, this[b] = a
+        }
+        item(a) {
+            return this.__mimetypes[a]
+        }
+        namedItem(a) {
+            return this.__named_mimetypes[a]
+        }
+        get length() {
+            return this.__mimetypes.length
+        }
+    }
+    class RufflePlugin extends RuffleMimeTypeArray {
+        constructor(a, b, c, d) {
+            super(d), this.name = a, this.description = b, this.filename = c
+        }
+        install(a) {
+            a.enabledPlugin || (a.enabledPlugin = this), super.install(a)
+        }
+    }
+    class RufflePluginArray {
+        constructor(a) {
+            this.__plugins = [], this.__named_plugins = {};
+            for (let b of a) this.install(b)
+        }
+        install(a) {
+            let b = this.__plugins.length;
+            this.__plugins.push(a), this.__named_plugins[a.name] = a, this[a.name] = a, this[b] = a
+        }
+        item(a) {
+            return this.__plugins[a]
+        }
+        namedItem(a) {
+            return this.__named_plugins[a]
+        }
+        get length() {
+            return this.__plugins.length
+        }
+    }
+    const FLASH_PLUGIN = new RufflePlugin("Shockwave Flash", "Shockwave Flash 32.0 r0", "ruffle.js", [new RuffleMimeType("application/futuresplash", "Shockwave Flash", "spl"), new RuffleMimeType("application/x-shockwave-flash", "Shockwave Flash", "swf"), new RuffleMimeType("application/x-shockwave-flash2-preview", "Shockwave Flash", "swf"), new RuffleMimeType("application/vnd.adobe.flash-movie", "Shockwave Flash", "swf")]);
+
+    function install_plugin(a) {
+        navigator.plugins.install || Object.defineProperty(navigator, "plugins", {
+            value: new RufflePluginArray(navigator.plugins),
+            writable: !1
+        }), navigator.plugins.install(a), 0 < a.length && !navigator.mimeTypes.install && Object.defineProperty(navigator, "mimeTypes", {
+            value: new RuffleMimeTypeArray(navigator.mimeTypes),
+            writable: !1
+        });
+        for (var b = 0; b < a.length; b += 1) navigator.mimeTypes.install(a[b])
+    }
+    install_plugin(FLASH_PLUGIN);
+})();
+</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>Take Attendance</title>
+        <link rel="Stylesheet" href="./Take Attendance_files/bootstrap.css" type="text/css">
+        <link rel="Stylesheet" href="./Take Attendance_files/bootstrap.min.css" type="text/css">
+        <link rel="Stylesheet" href="./Take Attendance_files/bootstrap-theme.min.css" type="text/css">
+        <link href="./Take Attendance_files/mystyle.css" rel="stylesheet">
+        <link href="./Take Attendance_files/mystyle2.css" rel="stylesheet">
+        <script src="./Take Attendance_files/jquery_002.js.tải xuống" type="text/javascript"></script>
+
+        <script src="./Take Attendance_files/jquery_003.js.tải xuống" type="text/javascript"></script>
+
+        <script src="./Take Attendance_files/jquery.js.tải xuống" type="text/javascript"></script>
+
+        <script src="./Take Attendance_files/jquery-1.8.3.js.tải xuống" type="text/javascript"></script>
+
+        <script src="./Take Attendance_files/jquery-ui.js.tải xuống" type="text/javascript"></script>
+
+        <script src="./Take Attendance_files/jquery.alerts.js.tải xuống" type="text/javascript"></script>
+    </head>
+    <body>
+        <nav class="navbar" role="navigation">
+            <ul class="nav navbar-nav">
+                <li> <a href="http://localhost:9999/Assignment/Home">Home</a> </li>
+                <li> <a href="http://localhost:9999/Assignment/Schedule">View Schedule</a></li>
+                <li> <a style="color: black;">Take Attendance</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div id="ctl00_divUser" style="float: right; margin-right: 16px;">
+                    <span id="ctl00_lblCampusName" class="label label-success">
+                        Sonnt</span
+                      >
+                      |
+                      <span id="ctl00_lblCampusName" class="label label-success">
+                        logout</span
+                      >
+                      |
+                      <span id="ctl00_lblCampusName" class="label label-success">
+                        CAMPUS: FPTU-Hòa Lạc</span
+                      >
+                </div>    
+            </div>
+        </div>
+        <div class="choose">
+            <table>
+                <tr><th>Course</th></tr>
+                <tr><td><a>DBI</a></td></tr>
+                <tr><td><a>PRO</a></td></tr>
+                <tr><td><a>PRF</a></td></tr>
+                <tr><td><a>PRJ</a></td></tr>
+                <tr><td><a>CSI</a></td></tr>
+            </table>
+            
+            <table>
+                <tr><th>Group</th></tr>
+                <tr><td><a>SE1631</a></td></tr>
+                <tr><td><a>SE1632</a></td></tr>
+                <tr><td><a>SE1633</a></td></tr>
+                <tr><td><a>SE1634</a></td></tr>
+                <tr><td><a>SE1635</a></td></tr>
+            </table>
+        </div>
+        <div>
+            <form action="http://localhost:9999/Assignment/TakeAttendance" method="post">
+                <h1>Attendance Report for PRJ - SE1634</h1>
+                <div class="Attendance_table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Group</th>
+                                <th>ID</th>
+                                <th>Student Code</th>
+                                <th>Sur Name</th>
+                                <th>Mid Name</th>
+                                <th>Given Name</th>
+                                <th>Slot Attended</th>
+                                <th>Percentage Absented</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <input type="hidden" value="44" name="sid">
+                        
+                        
+                            <tr>
+                                <td><a>SE1634</a></td>
+                                <td><input type="hidden" value="1" name="id1">1</td>
+                                <td><input type="hidden" value="HE1       " name="code1">HE1       </td>
+                                <td><input type="hidden" value="Nguyễn" name="sur1">Nguyễn</td>
+                                <td><input type="hidden" value="Văn" name="mid1">Văn</td>
+                                <td><input type="hidden" value="Hiếu" name="given1">Hiếu</td>
+                                <td>15/30</td>
+                                <td style="color: green;">0%</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td><a>SE1634</a></td>
+                                <td><input type="hidden" value="11" name="id2">11</td>
+                                <td><input type="hidden" value="HS       " name="code2">HS1       </td>
+                                <td><input type="hidden" value="Lưu" name="sur2">Lưu</td>
+                                <td><input type="hidden" value="Minh" name="mid2">Minh</td>
+                                <td><input type="hidden" value="Hương" name="given2">Hương</td>
+                                <td>8/30</td>
+                                <td style="color: red;">24%</td>
+                                
+                            </tr>
+                        
+                        <input type="hidden" value="3" name="count">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="last">
+                    <input type="submit" name="Send">
+                </div>
+            </form>
+        </div>
+
+</body></html>

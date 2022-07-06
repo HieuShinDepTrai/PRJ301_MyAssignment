@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Hiếu Shin FPT
  */
-public abstract class DBContext<T> {
+public class DBContext {
 
     protected Connection connection;
 
@@ -24,7 +24,7 @@ public abstract class DBContext<T> {
         try {
             String user = "sa";
             String pass = "12345";
-            String url = "jdbc:sqlserver://localhost\\HIEUSHIN:1433;databaseName=MyProject";
+            String url = "jdbc:sqlserver://localhost\\HIEUSHIN:1433;databaseName=Assignment";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
@@ -32,13 +32,4 @@ public abstract class DBContext<T> {
         }
     }
 
-    public abstract ArrayList<T> list();
-
-    public abstract T get(int id);
-
-    public abstract void insert(T model);
-
-    public abstract void update(T model);
-
-    public abstract void delete(T model);
 }

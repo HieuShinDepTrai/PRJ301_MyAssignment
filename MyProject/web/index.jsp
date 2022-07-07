@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,14 +20,21 @@
         <div class="container">
             <div class="row">
                 <div id="ctl00_divUser" style="float: right; margin-right: 16px;">
-                    <span id="ctl00_lblCampusName" class="label label-success">
-                        ${account.name}</span>
+                    <c:if test="${account!=null}">
+                        <a id="ctl00_lblCampusName" class="label label-success">
+                            ${account.name}</a>
+                        |
+                    </c:if>
+                    <c:if test="${account == null}">
+                        <a href="${pageContext.request.contextPath}/login" id="ctl00_lblCampusName" class="label label-success">
+                        Login</a>
                       |
-                      <span id="ctl00_lblCampusName" class="label label-success">
-                        logout</span>
-                      |
-                      <span id="ctl00_lblCampusName" class="label label-success">
-                        CAMPUS: FPTU-Hòa Lạc</span>
+                    </c:if>
+                    <a href="${pageContext.request.contextPath}/logout" id="ctl00_lblCampusName" class="label label-success">
+                        logout</a>
+                    |
+                    <a id="ctl00_lblCampusName" class="label label-success">
+                        CAMPUS: FPTU-Hòa Lạc</a>
                 </div>    
             </div>
         </div>
@@ -35,7 +43,7 @@
                 <a href="http://localhost:9999/Assignment/Home">1. Home</a><br><br>
                 <a href="http://localhost:9999/Assignment/Schedule">2. View Schedule</a><br><br>
                 <a href="http://localhost:9999/Assignment/Schedule">3. Attendance Report</a>
-        </p></div>
+            </p></div>
 
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>

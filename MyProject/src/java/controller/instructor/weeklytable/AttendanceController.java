@@ -65,7 +65,6 @@ public class AttendanceController extends HttpServlet {
         Session session = sessionDBContext.getSessions(1, 1);
         request.setAttribute("session", session);
         request.getRequestDispatcher("/views/instructor/weeklytable/attendance.jsp").forward(request, response);
-
     }
 
     /**
@@ -91,6 +90,8 @@ public class AttendanceController extends HttpServlet {
             User user = new User();
             user.setUserId(Integer.parseInt(users[i]));
             attendance.setUsers(user);
+            attendances.add(attendance);
+           
         }
         AttendanceDBContext attendanceDB = new AttendanceDBContext();
         attendanceDB.insertManny(attendances);

@@ -94,6 +94,7 @@ public class AttendanceDBContext extends DBContext {
                 stm.setInt(2, attendance.getSessionId());
                 stm.setBoolean(3, attendance.isStatus());
                 stm.executeUpdate();
+                 System.out.println(attendance.getUsers().getUserId() + "-" + attendance.isStatus());
             }
             connection.commit();
         } catch (SQLException ex) {

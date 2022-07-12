@@ -17,7 +17,7 @@
     <body>
         <div class="container mx-auto w-[1000px]">
 
-            <form action="attendance" method="Post">
+            <form method="post">
                 <h1> ROOM: ${session.room.roomName}</h1>
                 <h1> CLASS: ${session.classes.className}</h1>
                 <h1> COURSE: ${session.course.courseName}</h1>
@@ -54,7 +54,7 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex items-center mb-4">
-                                             <input type="hidden" name="user" value="${attend.users.userId}"/>
+                                            <input type="hidden" name="user" value="${attend.users.userId}"/>
                                             <input type="hidden" name="status" id="status-${attend.users.userId}" value="${attend.status}"/>
                                             <input onchange="$('#status-${attend.users.userId}').val('true')" ${attend.status==true ? "checked" : ""}  type="radio" value="true" name="${attend.users.userId}_status" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                                             <label class="ml-2 text-sm font-medium text-gray-900 mr-10">Attended</label>
@@ -69,7 +69,7 @@
                     </table>
                 </div>
                 <div class="flex justify-center ">
-                    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Default</button>
+                    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
                 </div>
 
             </form>

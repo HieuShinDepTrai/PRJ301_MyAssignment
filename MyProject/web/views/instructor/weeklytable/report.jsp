@@ -131,6 +131,7 @@
                 </table>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
     </body>

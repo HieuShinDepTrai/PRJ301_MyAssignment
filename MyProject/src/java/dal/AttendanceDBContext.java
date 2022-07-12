@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Attendance;
+import model.Session;
 import model.User;
 
 /**
@@ -51,5 +52,78 @@ public class AttendanceDBContext extends DBContext {
             Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return attendances;
+    }
+
+    public void insert(Attendance attendance) {
+        try {
+            String sql = "INSERT INTO [attendance]\n"
+                    + "           ([userid]\n"
+                    + "           ,[sessionid]\n"
+                    + "           ,[status])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, attendance.getUsers().getUserId());
+            stm.setInt(2, attendance.getSessionId());
+            stm.setBoolean(3, attendance.isStatus());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void insertManny(ArrayList<Attendance> list) {
+        if(list!=null && !list.isEmpty()){
+            deleteBySession(list.get(0).getSessionId());
+        }
+        try {
+            connection.setAutoCommit(false);
+            String sql = "INSERT INTO [attendance]\n"
+                    + "           ([userid]\n"
+                    + "           ,[sessionid]\n"
+                    + "           ,[status])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            for (Attendance attendance : list) {
+                PreparedStatement stm = connection.prepareStatement(sql);
+                stm.setInt(1, attendance.getUsers().getUserId());
+                stm.setInt(2, attendance.getSessionId());
+                stm.setBoolean(3, attendance.isStatus());
+                stm.executeUpdate();
+            }
+            connection.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void delete(Attendance attendance) {
+        try {
+            String sql = "DELETE FROM [attendance]\n"
+                    + "      WHERE [attendance].[sessionid] = ? AND [attendance].[userid] = ? ";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, attendance.getSessionId());
+            stm.setInt(2, attendance.getUsers().getUserId());
+
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void deleteBySession(int sessionId) {
+        try {
+            String sql = "DELETE FROM [attendance]\n"
+                    + "      WHERE [attendance].[sessionid] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, sessionId);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

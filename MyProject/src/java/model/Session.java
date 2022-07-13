@@ -20,6 +20,21 @@ public class Session {
     private Course course;
     private List<Attendance> attendance;
 
+    public Session() {
+    }
+
+    public Session(int sessionId, int slot, Date date, Room room, Classes classes, Course course, List<Attendance> attendance) {
+        this.sessionId = sessionId;
+        this.slot = slot;
+        this.date = date;
+        this.room = room;
+        this.classes = classes;
+        this.course = course;
+        this.attendance = attendance;
+    }
+
+    
+    
     public int getSessionId() {
         return sessionId;
     }

@@ -4,12 +4,11 @@
  */
 package dal;
 
-import jakarta.servlet.jsp.jstl.sql.Result;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Attendance;
@@ -23,6 +22,44 @@ import model.Session;
  * @author Hiếu Shin FPT
  */
 public class SessionDBContext extends DBContext {
+
+    public ArrayList<Session> ListAllSessions() {
+        ArrayList<Session> sessions = new ArrayList<>();
+        try {
+            String sql = "SELECT [session].[id], "
+                    + "[slot], "
+                    + "[date], "
+                    + "[roomid], "
+                    + "[classid], "
+                    + "[courseid]\n"
+                    + "FROM [user] INNER JOIN [attendance]\n"
+                    + "ON [user].[id] = [attendance].[userid] \n"
+                    + "INNER JOIN [session]\n"
+                    + "ON [attendance].[sessionid] = [session].[id]";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Session session = new Session();
+                session.setSessionId(rs.getInt("id"));
+                session.setSlot(rs.getInt("slot"));
+                session.setDate(rs.getDate("date"));
+                Room r = new Room();
+                r.setRoomId(rs.getInt("roomid"));
+                session.setRoom(r);
+                Classes classes = new Classes();
+                classes.setClassId(rs.getInt("classid"));
+                session.setClasses(classes);
+                Course course = new Course();
+                course.setCourseId(rs.getInt("courseid"));
+                session.setCourse(course);
+
+                sessions.add(session);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sessions;
+    }
 
     public Session getSessions(int sessionId, int classId) {
         AttendanceDBContext attendanceDBContext = new AttendanceDBContext();
@@ -74,5 +111,56 @@ public class SessionDBContext extends DBContext {
             Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public ArrayList<Session> getSessionsByUserID(Integer userId, Date date) {
+        String sql = "select \n"
+                + "[s].*, \n"
+                + "[r].[name] as [rname],\n"
+                + "[c].[name] as [cname], \n"
+                + "[co].[name] as [coname]\n"
+                + "from [enroll] as [e], [session] as [s], [room] as [r], [class] as [c], [course] as co\n"
+                + "where [e].[userid] = ?\n"
+                + "and [e].[classid] = [s].[classid]\n"
+                + "and [s].[date] between ? and ?\n"
+                + "and [s].[roomid] = [r].[id]\n"
+                + "and [s].[classid] = [c].[id]\n"
+                + "and [s].[courseid] = [co].id";
+
+        ArrayList<Session> sessions = new ArrayList<>();
+
+        try ( PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ps.setDate(2, date);
+            ps.setDate(3, new Date(date.getTime() + 1000 * 60 * 60 * 24 * 7));
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Session session = new Session();
+                session.setSessionId(rs.getInt("id"));
+                session.setSlot(rs.getInt("slot"));
+                session.setDate(rs.getDate("date"));
+                Room room = new Room();
+                room.setRoomId(rs.getInt("roomid"));
+                room.setRoomName(rs.getString("rname"));
+                session.setRoom(room);
+                Classes classes = new Classes();
+                classes.setClassId(rs.getInt("classid"));
+                classes.setClassName(rs.getString("cname"));
+                session.setClasses(classes);
+                Course course = new Course();
+                course.setCourseId(rs.getInt("courseid"));
+                course.setCourseName(rs.getString("coname"));
+                session.setCourse(course);
+                
+                sessions.add(session);
+            }
+
+        } catch (Exception e) {
+            return null;
+        }
+
+        return sessions;
     }
 }

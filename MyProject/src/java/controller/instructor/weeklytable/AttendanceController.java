@@ -61,8 +61,20 @@ public class AttendanceController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (request.getSession().getAttribute("account") == null) {
+            response.getWriter().print("<h1>Access Denied - You are not login</h1>");
+            return;
+        }
+        
+        if ((Boolean)request.getSession().getAttribute("isInstructor") == false) {
+            response.getWriter().print("<h1>Access Denied - You are not instructor</h1>");
+            return;
+        }
+        
         SessionDBContext sessionDBContext = new SessionDBContext();
-        Session session = sessionDBContext.getSessions(1, 1);
+        Session session = sessionDBContext.getSessions(
+                Integer.parseInt(request.getParameter("sid")), 
+                Integer.parseInt(request.getParameter("cid")));
         request.setAttribute("session", session);
         request.getRequestDispatcher("/views/instructor/weeklytable/attendance.jsp").forward(request, response);
     }

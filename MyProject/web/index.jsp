@@ -16,35 +16,75 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
-
-        <div class="container">
+        <div>
+            <p style="font-size: 70px;
+               font-weight: 600;
+               background-image: linear-gradient(45deg, #553c9a, #ee4b2b);
+               color: transparent;
+               background-clip: text;
+               -webkit-background-clip: text;
+               text-align: center;
+               "> Welcome to Attendance System </p><p><br>
+            </p></div>
+        <div style="margin-bottom: 100px;" class="container">
             <div class="row">
-                <div id="ctl00_divUser" style="float: right; margin-right: 16px;">
+                <div id="ctl00_divUser" style="float: right; margin-right: 50px;">
                     <c:if test="${account!=null}">
-                        <a id="ctl00_lblCampusName" class="label label-success">
+                        <a style="background-image: linear-gradient(to right, #fdcbf1 45%, #e6dee9);
+                           padding: 5px;
+                           border-radius: 5px;" id="ctl00_lblCampusName" class="label label-success">
                             ${account.name}</a>
                         |
                     </c:if>
                     <c:if test="${account == null}">
-                        <a href="${pageContext.request.contextPath}/login" id="ctl00_lblCampusName" class="label label-success">
-                        Login</a>
-                      |
+                        <a style="background-image: linear-gradient(to right, #fdcbf1 45%, #e6dee9);
+                           padding: 5px;
+                           border-radius: 5px;" href="${pageContext.request.contextPath}/login" id="ctl00_lblCampusName" class="label label-success">
+                            Login</a>
+                        |
                     </c:if>
-                    <a href="${pageContext.request.contextPath}/logout" id="ctl00_lblCampusName" class="label label-success">
-                        logout</a>
+                    <a style="background-image: linear-gradient(to right, #fdcbf1 45%, #e6dee9);
+                       padding: 5px;
+                       border-radius: 5px;" href="${pageContext.request.contextPath}/logout" id="ctl00_lblCampusName" class="label label-success">
+                        Logout</a>
                     |
-                    <a id="ctl00_lblCampusName" class="label label-success">
+                    <a style="background-image: linear-gradient(to right, #fdcbf1 45%, #e6dee9);
+                       padding: 5px;
+                       border-radius: 5px;" id="ctl00_lblCampusName" class="label label-success">
                         CAMPUS: FPTU-Hòa Lạc</a>
                 </div>    
             </div>
         </div>
-        <div>
-            <p style="text-align: center; font-size: 50px"> Welcome to Attendance System </p><p><br>
-                <a href="http://localhost:9999/Assignment/Home">1. Home</a><br><br>
-                <a href="http://localhost:9999/Assignment/Schedule">2. View Schedule</a><br><br>
-                <a href="http://localhost:9999/Assignment/Schedule">3. Attendance Report</a>
-            </p></div>
-
+        <a style="background-image: linear-gradient(to right, #108dc7 45%, #ef8e38);
+           padding: 5px;
+           border-radius: 5px;
+           font-size: 50px;
+           color: transparent;
+           background-clip: text;
+           -webkit-background-clip: text;
+           margin-left: 40%;
+           margin-right: 40%;
+           " href="http://localhost:8080/MyProject">1. Home</a><br><br>
+        <a style="background-image: linear-gradient(to right, #108dc7 45%, #ef8e38);
+           padding: 5px;
+           border-radius: 5px;
+           font-size: 50px;
+           color: transparent;
+           background-clip: text;
+           -webkit-background-clip: text;
+           margin-left: 35%;
+           margin-right: 35%;"
+           href="http://localhost:8080/MyProject/session">2. View Schedule</a><br><br>
+        <a style="background-image: linear-gradient(to right, #108dc7 45%, #ef8e38);
+           padding: 5px;
+           border-radius: 5px;
+           font-size: 50px;
+           color: transparent;
+           background-clip: text;
+           -webkit-background-clip: text;
+           margin-left: 32%;
+           margin-right: 32%;" 
+           href="http://localhost:8080/MyProject/report/attendance">3. Attendance Report</a>
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
     </body>

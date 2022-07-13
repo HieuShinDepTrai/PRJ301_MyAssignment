@@ -53,4 +53,18 @@ public class AccountDBContext extends DBContext {
         }
         return null;
     }
+    
+     public Boolean isInstructor(int userId) {
+        try {
+            PreparedStatement stm = connection.prepareStatement("select * from [user], [user_group] where [user].[id] = [user_group].[userid] and [groupid] = 1 and [user].[id] = ?");
+            stm.setInt(1, userId);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return false;
+    }
 }

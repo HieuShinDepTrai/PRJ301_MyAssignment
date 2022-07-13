@@ -36,6 +36,7 @@ public class LoginController extends HttpServlet {
         if(account != null)
         {
             request.getSession().setAttribute("account", account);
+            request.getSession().setAttribute("isInstructor", db.isInstructor(account.getId()));
             response.sendRedirect(request.getContextPath()+"/home");
         }
         else

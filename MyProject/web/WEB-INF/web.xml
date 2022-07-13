@@ -34,7 +34,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SessionController</servlet-name>
-        <url-pattern>/report</url-pattern>
+        <url-pattern>/session</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AttendanceController</servlet-name>

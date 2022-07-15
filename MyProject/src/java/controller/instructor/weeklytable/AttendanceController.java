@@ -65,18 +65,20 @@ public class AttendanceController extends HttpServlet {
             response.getWriter().print("<h1>Access Denied - You are not login</h1>");
             return;
         }
-        
-        if ((Boolean)request.getSession().getAttribute("isInstructor") == false) {
+
+        if ((Boolean) request.getSession().getAttribute("isInstructor") == false) {
             response.getWriter().print("<h1>Access Denied - You are not instructor</h1>");
             return;
         }
-        
+
         SessionDBContext sessionDBContext = new SessionDBContext();
         Session session = sessionDBContext.getSessions(
-                Integer.parseInt(request.getParameter("sid")), 
+                Integer.parseInt(request.getParameter("sid")),
                 Integer.parseInt(request.getParameter("cid")));
         request.setAttribute("session", session);
-        request.getRequestDispatcher("/views/instructor/weeklytable/attendance.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/instructor/weeklytable/attendance.jsp?sid="
+                + request.getParameter("sid")
+                + "&cid=" + request.getParameter("cid")).forward(request, response);
     }
 
     /**
@@ -91,7 +93,7 @@ public class AttendanceController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         SessionDBContext sessionDBContext = new SessionDBContext();
-        Session session = sessionDBContext.getSessions(1, 1);
+        Session session = sessionDBContext.getSessions(Integer.parseInt(request.getParameter("sid")), Integer.parseInt(request.getParameter("cid")));
         String[] users = request.getParameterValues("user");
         String[] status = request.getParameterValues("status");
         ArrayList<Attendance> attendances = new ArrayList<>();
@@ -103,11 +105,13 @@ public class AttendanceController extends HttpServlet {
             user.setUserId(Integer.parseInt(users[i]));
             attendance.setUsers(user);
             attendances.add(attendance);
-           
+
         }
         AttendanceDBContext attendanceDB = new AttendanceDBContext();
         attendanceDB.insertManny(attendances);
-        response.sendRedirect(request.getContextPath()+"/report/attendance");
+        response.sendRedirect(request.getContextPath() + "/report/attendance?sid="
+                + request.getParameter("sid")
+                + "&cid=" + request.getParameter("cid"));
     }
 
     /**

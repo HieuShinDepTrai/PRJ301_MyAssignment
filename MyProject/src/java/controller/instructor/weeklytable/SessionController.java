@@ -65,7 +65,7 @@ public class SessionController extends HttpServlet {
         Long date;
         try {
             date = Long.parseLong(request.getParameter("date"));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             date = 1635292800000L;
         }
         

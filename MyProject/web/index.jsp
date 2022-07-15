@@ -75,7 +75,7 @@
            margin-left: 35%;
            margin-right: 35%;"
            href="http://localhost:8080/MyProject/session">2. View Schedule</a><br><br>
-        <a style="background-image: linear-gradient(to right, #108dc7 45%, #ef8e38);
+<!--        <a style="background-image: linear-gradient(to right, #108dc7 45%, #ef8e38);
            padding: 5px;
            border-radius: 5px;
            font-size: 50px;
@@ -84,7 +84,7 @@
            -webkit-background-clip: text;
            margin-left: 32%;
            margin-right: 32%;" 
-           href="http://localhost:8080/MyProject/report/attendance">3. Attendance Report</a>
+           href="http://localhost:8080/MyProject/report/attendance">3. Attendance Report</a>-->
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
     </body>

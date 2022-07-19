@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Session</title>
         <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
         <!-- Font Awesome -->
         <link
@@ -39,7 +39,7 @@
 
             <script>
                 window.addEventListener('load', () => {
-                    const startDate = new Date('2021-04-28').getTime();
+                    const startDate = new Date('2021-04-25').getTime();
                     const addWeek = (week) => {
                         const date = new Date(startDate + 1000 * 60 * 60 * 24 * 7 * week);
                         document.getElementById('date-choices').innerHTML += '<option value="' + date.getTime() + '">' + date.toDateString() + '</option>';
@@ -72,7 +72,7 @@
                                 <c:forEach var="day" begin="0" end="6">
                                 <td scope="row">
                                     <div><a href="report/attendance?sid=${data.get(slot).get(day).sessionId}&cid=${data.get(slot).get(day).classes.classId}">${data.get(slot).get(day).course.courseName}</a></div>
-                                    <small>${data.get(slot).get(day).room.roomName}</small>
+                                    <small>${data.get(slot).get(day).room.roomName}</small><br/>
                                 </td>
                             </c:forEach>
                         </tr>

@@ -26,9 +26,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <img class="w-full h-20 mr-2" src="https://upload.wikimedia.org/wikipedia/vi/1/1d/Logo_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_FPT.png?20210321075523" alt="logo"> 
                 </a>
                 <c:if test="${message != null}">
-                <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-                    <span class="font-medium">Error!</span> ${message}
-                </div>
+                    <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                        <span class="font-medium">Error!</span> ${message}
+                    </div>
                 </c:if>
                 <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -44,7 +44,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
                                 <input value="${password != null ? password : ''}" type="password" name="password" id="password" placeholder="????????" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="">
                             </div>
-                            <button type="submit" class="w-full bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button></form>
+                            <button type="submit" class="w-full bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
+                        </form>
                     </div>
                 </div>
             </div>

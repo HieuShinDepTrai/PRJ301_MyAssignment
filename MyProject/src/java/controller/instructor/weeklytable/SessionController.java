@@ -61,32 +61,37 @@ public class SessionController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         SessionDBContext db = new SessionDBContext();
-        
+
         Long date;
         try {
             date = Long.parseLong(request.getParameter("date"));
         } catch (NumberFormatException e) {
             date = 1635292800000L;
         }
-        
-        ArrayList<Session> sessions = db.getSessionsByUserID(((Account)request.getSession().getAttribute("account")).getId(), new Date(date));
-        ArrayList<ArrayList<Session>> data = new ArrayList<>();
 
-        for (int i = 0; i < 8; i++) {
-            ArrayList<Session> days = new ArrayList<>();
-            for (int j = 0; j < 7; j++) {
-                days.add(null);
+        if (request.getSession().getAttribute("account") != null) {
+            ArrayList<Session> sessions = db.getSessionsByUserID(((Account) request.getSession().getAttribute("account")).getId(), new Date(date));
+            ArrayList<ArrayList<Session>> data = new ArrayList<>();
+
+            for (int i = 0; i < 8; i++) {
+                ArrayList<Session> days = new ArrayList<>();
+                for (int j = 0; j < 7; j++) {
+                    days.add(null);
+                }
+                data.add(days);
             }
-            data.add(days);
-        }
 
-        for (Session session : sessions) {
-            int dayOfWeek = session.getDate().getDay();
-            data.get(session.getSlot() - 1).set(dayOfWeek, session);
-        }
+            for (Session session : sessions) {
+                int dayOfWeek = session.getDate().getDay();
+                data.get(session.getSlot() - 1).set(dayOfWeek, session);
+            }
 
-        request.setAttribute("data", data);
-        request.getRequestDispatcher("views/instructor/weeklytable/session.jsp").forward(request, response);
+            request.setAttribute("data", data);
+            request.getRequestDispatcher("views/instructor/weeklytable/session.jsp").forward(request, response);
+        }
+        else {
+            response.sendRedirect(request.getContextPath() + "/login");
+        }
     }
 
     /**

@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Take attendance</title>
         <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
 
     </head>
@@ -26,7 +26,7 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr class="border-b">
                                 <th scope="col" class="px-6 py-3">
-                                    INDEX
+                                    UserID
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Name

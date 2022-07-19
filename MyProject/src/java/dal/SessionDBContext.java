@@ -114,18 +114,19 @@ public class SessionDBContext extends DBContext {
     }
 
     public ArrayList<Session> getSessionsByUserID(Integer userId, Date date) {
-        String sql = "select \n"
-                + "[s].*, \n"
+        String sql = "select distinct [s].*, \n"
                 + "[r].[name] as [rname],\n"
                 + "[c].[name] as [cname], \n"
-                + "[co].[name] as [coname]\n"
-                + "from [enroll] as [e], [session] as [s], [room] as [r], [class] as [c], [course] as co\n"
+                + "[co].[name] as [coname],\n"
+                + "[a].[status] as [astatus]\n"
+                + "from [enroll] as [e], [session] as [s], [room] as [r], [class] as [c], [course] as [co], attendance as [a]\n"
                 + "where [e].[userid] = ?\n"
                 + "and [e].[classid] = [s].[classid]\n"
                 + "and [s].[date] between ? and ?\n"
                 + "and [s].[roomid] = [r].[id]\n"
                 + "and [s].[classid] = [c].[id]\n"
-                + "and [s].[courseid] = [co].id";
+                + "and [s].[courseid] = [co].[id]\n"
+                + "and [a].[sessionid] = [s].[id]";
 
         ArrayList<Session> sessions = new ArrayList<>();
 
@@ -153,7 +154,7 @@ public class SessionDBContext extends DBContext {
                 course.setCourseId(rs.getInt("courseid"));
                 course.setCourseName(rs.getString("coname"));
                 session.setCourse(course);
-                
+
                 sessions.add(session);
             }
 

@@ -90,7 +90,4 @@ public class Session {
     public void setAttendance(List<Attendance> attendance) {
         this.attendance = attendance;
     }
-    
-    
-    
 }
